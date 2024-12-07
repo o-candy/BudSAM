@@ -15,8 +15,6 @@ join = os.path.join
 
 IMG_SIZE = 1024
 
-nolabel_data = ["XC175650_left.png", "XC462632_left.png", "XC462680_left.png", "XC463223_left.png", "XC463661.png", "XC469469_left.png", "XC490972_left.png", "XC496206_left.png"]
-
 
 class AudioDenoisingDataset(Dataset):
     def __init__(self, data_root, bbox_shift=20):
@@ -24,19 +22,9 @@ class AudioDenoisingDataset(Dataset):
         self.images_dir = join(data_root, "Images")
         self.masks_dir = join(data_root, "Masks")
         self.images = [img for img in os.listdir(self.images_dir) if img.endswith('.png')]
-        
-        if "train" in self.data_root:
-          for item in nolabel_data:
-            if item in self.images:
-              del self.images[self.images.index(item)]
-        self.images = self.images
         self.masks = [mask.replace('.png', '.png') for mask in self.images]
 
         self.bbox_shift = bbox_shift
-        if nolabel_data in self.images:
-          print("nolabel_data in self.images")
-        if nolabel_data in self.masks:
-          print("nolabel_data in self.masks")
         print(f"number of images: {len(self.images)}")
         print(f"number of masks: {len(self.masks)}")
 

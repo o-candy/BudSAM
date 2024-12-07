@@ -2,11 +2,14 @@
 
 Implementation of "Segment Anything for Visual Bird Sound Denoising".
 
-## Abstract
-Current audio denoising methods perform well with synthetic noise but struggle with complex natural noise, especially for bird sounds, which contain natural environmental sounds such as wind and rain, making it challenging to extract clean bird sounds. This issue becomes more pronounced with short and faint bird sounds, where existing methods are less effective. In this paper, we introduce BudSAM, a novel audio denoising model that incorporates the Segment Anything Model (SAM), originally designed for image segmentation task, into the field of visual bird sound denoising. By treating audio denoising as a segmentation task, BudSAM leverages SAM’s powerful segmentation capabilities and we incorporates BCE and Dice losses to enhance the model’s ability to segment weak signals, effectively isolating the clean bird sounds that are often masked by background noise. Our method is evaluated on the BirdSoundsDenoising dataset, achieving a 4.0\% improvement in IoU and a 0.77 dB increase in SDR compared to state-of-the-art methods. To the best knowledge of the authors, BudSAM marks the first attempt which employs SAM in audio denoising task, offering a promising direction for future research and real-world bird sound processing tasks.
 
 ## Installation
     pip install -r requirements.txt
+
+## Model
+We use the [ViT-B SAM model](https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth) to initialize the BudSAM model parameters.
+
+We provide access to our trained [BudSAM model](https://pan.baidu.com/s/159-UM-_WpqWa87nTaWoaUA?pwd=g6np).
 
 ## Run
     nohup python budsam_train_multi.py \
